@@ -13,7 +13,7 @@ module.exports = {
       title: 'Untitled Docs',
       logo: {
         alt: 'Untitled logo',
-        src: 'img/logo_blank.png',
+        src: 'img/u_fav.png',
       },
       items: [
         {
