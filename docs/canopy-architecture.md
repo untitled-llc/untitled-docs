@@ -28,7 +28,7 @@ This the main document relating to documentation of the development of the Canop
 
 ##### System Architecture
 
-![Canopy System Archetecture Diagram](https://github.com/Canopy-Certified-Inc/back-end-architecture/raw/master/Canopy%20Stack.jpg)
+![Canopy System Archetecture Diagram](https://raw.githubusercontent.com/untitled-llc/untitled-docs/main/static/img/Canopy%20Stack.jpg)
 
 ##### Getting Started
 
