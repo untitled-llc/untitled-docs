@@ -2,7 +2,7 @@
 id: canopy
 title: Canopy System Architecture
 sidebar_label: Canopy
-slug: /
+slug: /canopy
 ---
 
 ## Canopy Portal Documentation
@@ -12,27 +12,19 @@ This the main document relating to documentation of the development of the Canop
 
 1. System Architecture
     - Diagram
-2. Getting Started
-    - Dev Requirements
-    - Dependencies
-    - Useful Links
-3. Environments
+2. Environments
     - AWS
     - Salesforce
     - FormAssembly
-4. Development Flow
+3. Development Flow
     - Featured-based Branches
     - Changes to AWS Environment
     - Deployment
-5. Changelog
+4. Changelog
 
 ##### System Architecture
 
 ![Canopy System Archetecture Diagram](https://raw.githubusercontent.com/untitled-llc/untitled-docs/main/static/img/Canopy%20Stack.jpg)
-
-##### Getting Started
-
-This the main document relating to documentation of the development of the Canopy Certified Inc. Business Portal. The portal, built with React, utilizes a variety of integrated AWS, Salesforce, and FormAssembly services to help businesses keep on track to becoming Certified B-Corps. Documentation for the portal will be updated as necessary to reflect the latest and/or breaking releases of the application.
 
 ##### Dev Requirements
 
