@@ -1,15 +1,11 @@
 ---
-id: canopy-getting-started
-title: Getting Started
-sidebar_label: Getting Started
-slug: /canopy/getting-started
+id: canopy-runbook
+title: Runbook
+sidebar_label: Runbook
+slug: /canopy/runbook
 ---
 
-Welcome to the Canopy-KY business education and certification website documentation!
-
-Boy that was a mouthful 😅
-
-to get started locally first clone the repo for the canopy portal:
+To get started locally first clone the repo for the canopy portal:
 
 ```
 git clone git@github.com:Canopy-Certified-Inc/portal-front-end.git
