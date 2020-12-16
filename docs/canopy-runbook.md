@@ -5,34 +5,24 @@ sidebar_label: Runbook
 slug: /canopy/runbook
 ---
 
-To get started locally first clone the repo for the canopy portal:
+
+This document is a general guide for troubleshooting problems in production
+and administrating the production environment.
+
 
 ```
-git clone git@github.com:Canopy-Certified-Inc/portal-front-end.git
+make help
 ```
 
-*Note: the link above is for ssh-key authenticated cloning. For HTTPS use* [https://github.com/Canopy-Certified-Inc/portal-front-end.git](https://github.com/Canopy-Certified-Inc/portal-front-end.git)
+If you have any questions or something is on fire please contact one of the
+following people in this order:
 
-Before running the site locally install all dependencies with: 
-
-```
-yarn install
-```
-
-Then start the webserver with:
-
-```
-yarn start
-```
-
-You should have a site running at [https://localhost:3000](https://localhost:3000)
-
-TODO:
-- System Requirements
-  - nodejs?
-- Useful Links
-  - Amplify docs
-  - Formassembly docs
-  - Salesforce Docs
-- Take advantage of Github issues so we can link to that in the docs for
-  Runbooks
+1. Nate
+    - [502-292-8257](tel:+5022928257)
+    - [nate@untitledfirm.com](mailto:nate@untitledfirm.com)
+2. Cairo
+    - [571-432-6194](tel:+5714326194)
+    - [cairo@untitledfirm.com](mailto:cairo@untitledfirm.com)
+3. Noah
+    - [270-999-3818](tel:+2709993818)
+    - [noah@untitledfirm.com](mailto:noah@untitledfirm.com)
