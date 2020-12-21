@@ -35,8 +35,8 @@ TODO:
 - System Requirements
   - nodejs?
 - Useful Links
-  - Amplify docs
-  - Formassembly docs
-  - Salesforce Docs
+  - [Amplify docs](https://docs.amplify.aws/)
+  - [Formassembly docs](https://help.formassembly.com/help)
+  - [Salesforce Docs](https://developer.salesforce.com/docs/)
 - Take advantage of Github issues so we can link to that in the docs for
   Runbooks
