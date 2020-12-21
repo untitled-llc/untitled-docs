@@ -25,7 +25,7 @@ This the main document relating to documentation of the development of the Canop
 
 #### Form Submission and Archive Process
 
-![Form Submission and Archive Process](https://raw.githubusercontent.com/untitled-llc/untitled-docs/main/static/img/Canopy%20Stack.jpg)
+![Form Submission and Archive Process](https://raw.githubusercontent.com/untitled-llc/untitled-docs/main/static/img/CanopyFormFlow.png)
 
 
 Salesforce will pre-fill all forms whenever viewed on the portal. If the form has not been completed yet, it will show up as a blank form, otherwise all previous forms will be filled out as submitted.   
@@ -43,4 +43,4 @@ Once a form is submitted it will be up for review by a Canopy employee. The Cano
 
 #### Form Point System
 
-![Form Point System](https://raw.githubusercontent.com/untitled-llc/untitled-docs/main/static/img/Canopy%20Stack.jpg)
+![Form Point System](https://raw.githubusercontent.com/untitled-llc/untitled-docs/main/static/img/FormPoints.png)
