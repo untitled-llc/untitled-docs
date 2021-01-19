@@ -60,6 +60,8 @@ def lambda_handler(event, context):
 
     return None
  ```
+ 
+ 
   This code is written to edit the Cognito_users table's column *paid*, and update all rows to **True** . The code can be used as a template for any table though by subsituting:
        -   all things labeled *sf_id* for whatever the table's partition key
        -   all *user_id* for the table's sort key
