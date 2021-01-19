@@ -21,7 +21,7 @@ This the main document relating to documentation of the development of the Canop
 
 #### Signup
 
-![Sign Up](https://raw.githubusercontent.com/untitled-llc/untitled-docs/main/static/img/Canopy%20Stack.jpg)
+![Sign Up](https://raw.githubusercontent.com/untitled-llc/untitled-docs/main/static/img/CanopySignupProcess.png)
 
 #### Form Submission and Archive Process
 
