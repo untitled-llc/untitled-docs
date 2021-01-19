@@ -69,7 +69,7 @@ The code's function gets all rows of the given table and itterates through them 
 
 In order to run this code, first, create a lambda function and copy and paste this code. Add a Layer with this ARN [arn:aws:lambda:us-east-2:770693421928:layer:Klayers-python38-requests:11]. Also add an Execution Role that includes this policy, "AmazonDynamoDBFullAccess". Edit the Lambda's basic settings to a Timeout long enough to run through all rows in the table and update ( 1 min 30 sec did ~250 rows). Then using the standard default event, test the Lambda. This will run your code and change the dynamoDB table. 
 
-##Other Issues
+## Other Issues
 
 If you have any questions or something is on fire please contact one of the
 following people in this order:
