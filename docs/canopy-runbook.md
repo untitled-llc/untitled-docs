@@ -69,6 +69,15 @@ The code's function gets all rows of the given table and itterates through them 
 
 In order to run this code, first, create a lambda function and copy and paste this code. Add a Layer with this ARN [arn:aws:lambda:us-east-2:770693421928:layer:Klayers-python38-requests:11]. Also add an Execution Role that includes this policy, "AmazonDynamoDBFullAccess". Edit the Lambda's basic settings to a Timeout long enough to run through all rows in the table and update ( 1 min 30 sec did ~250 rows). Then using the standard default event, test the Lambda. This will run your code and change the dynamoDB table. 
 
+
+### AWS Amplify Build Issue
+AWS Amplify is difficult to troubleshoot to say the least... One of the issues we came upon more than once was changes made using the Amplify CLI not leading to the necesary changes on either the AWS Cloud side or inside the Github code. When you run ```amplify remove <whatever you want to delete>``` AWS Amplify should automatically delete the Lambda, or API or Storage etc. from the AWS Cloud and from your Github code. An example of this issue was one time we deleted an API that was not being used, using the CLI. This deleted the API from the Amplify CLI "status" but did NOT delete the API, or the connected Lambda, from inside the Github code. This meant every time we tried to build the App again. AWS Amplify would clone our github code and try and find the correlated Lambda and API on the cloud (that no longer existed) causing a broken build. 
+
+In order to avoid this issue, make sure to triple check that all modifications done using the CLI are replicated on the Cloud and in your github code otherwise it will throw an error. A good way to check the github code for changes, is to restart a terminal page and run ```amplify init```. This will initialize amplify using your code. If there are parts in the code that are not in AWS Cloud it will label them **create**. This means it is deleted on the cloud but NOT in the github code. 
+
+You can also use the AWS Amplify Admin UI to have a better visual on exactly what is being logged during the build. 
+
+
 ## Other Issues
 
 If you have any questions or something is on fire please contact one of the
