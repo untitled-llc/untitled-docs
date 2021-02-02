@@ -1,5 +1,5 @@
 ---
-id: canopy-system-architecture
+id: system-architecture
 title: Canopy System Architecture
 sidebar_label: System Architecture
 slug: /canopy/architecture

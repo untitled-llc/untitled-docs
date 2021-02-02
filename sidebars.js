@@ -1,33 +1,33 @@
 module.exports = {
   someSidebar: {
-    Canopy: ['canopy-getting-started','canopy-system-architecture','canopy-environments','canopy-dev-flow','canopy-changelog','canopy-runbook'],
-    'Zendesk/ClickUp Automation': ['zendesk-to-clickup','clickup-updates-sheet','clickup-to-zendesk'],
+    Canopy: ['canopy/getting-started','canopy/system-architecture','canopy/environments','canopy/dev-flow','canopy/changelog','canopy/runbook'],
+    'Zendesk/ClickUp Automation': ['zendesk-clickup/zendesk-to-clickup','zendesk-clickup/clickup-updates-sheet','zendesk-clickup/clickup-to-zendesk'],
     'Field Guide': ['field-guide'],
-    Esquire: ['esquire-overview',
+    Esquire: ['esquire/overview',
              { type: 'category', 
                label:'Zipcodes and Observations', 
-                     items: ['esquire-zo-overview','esquire-zo-lambda', 'esquire-zo-s3','esquire-zo-redshift-glue']}, 
+                     items: ['esquire/zipcodes-observations/overview','esquire/zipcodes-observations/lambda', 'esquire/zipcodes-observations/s3','esquire/zipcodes-observations/redshift-glue']}, 
              { type: 'category', 
                label:'Ads Metrics', 
-                     items: ['esquire-ads-metrics-eltoro', 'esquire-ads-metrics-googleads']},
+                     items: ['esquire/ads-metrics/eltoro', 'esquire/ads-metrics/googleads']},
              { type: 'category', 
                label:'Ads Automation', 
-                     items: ['esquire-auto-overview', 
+                     items: ['esquire/ads-automation/overview', 
                               { type: 'category', 
                                 label:'New Movers', 
-                                       items: ['esquire-auto-NM-overview', 'esquire-auto-NM-s3','esquire-auto-NM-lambda','esquire-auto-NM-redshift-glue' ]
+                                       items: ['esquire/ads-automation/new-movers/overview', 'esquire/ads-automation/new-movers/s3','esquire/ads-automation/new-movers/lambda','esquire/ads-automation/new-movers/redshift-glue' ]
                               },
                               { type: 'category', 
                                 label:'Venue Replay/ InMarket Shoppers', 
-                                       items: ['esquire-auto-VR-overview', 'esquire-auto-VR-s3','esquire-auto-VR-lambda','esquire-auto-VR-redshift-glue' ]
+                                       items: ['esquire/ads-automation/venue-replay/overview', 'esquire/ads-automation/venue-replay/s3','esquire/ads-automation/venue-replay/lambda','esquire/ads-automation/venue-replay/redshift-glue' ]
                             } ]
               },
              { type: 'category', 
                label:'Salesforce Architecture', 
-                     items: ['esquire-sf-overview']},
+                     items: ['esquire/salesforce/overview']},
              { type: 'category', 
                label:'Avrick Movers', 
-                     items: ['esquire-avz-overview','esquire-avz-lambda', 'esquire-avz-s3']}
+                     items: ['esquire/avrick-movers/overview','esquire/avrick-movers/lambda', 'esquire/avrick-movers/s3']}
                     ],
     Docusaurus: ['doc1', 'doc2', 'doc3'],
     Features: ['mdx', 'untitDocs']

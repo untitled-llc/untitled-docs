@@ -1,5 +1,5 @@
 ---
-id: canopy-runbook
+id: runbook
 title: Runbook
 sidebar_label: Runbook
 slug: /canopy/runbook

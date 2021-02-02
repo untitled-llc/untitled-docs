@@ -1,5 +1,5 @@
 ---
-id: canopy-changelog
+id: changelog
 title: Change Log
 sidebar_label: Change Log
 slug: /canopy/changelog

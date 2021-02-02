@@ -1,5 +1,5 @@
 ---
-id: canopy-environments
+id: environments
 title: Canopy Environments
 sidebar_label: Environments
 slug: /canopy/environments
