@@ -14,6 +14,6 @@ The following documentation provides information on:
   - **Salesforce Architecture** - documents the organization of Salesforce
   - **Avrick Movers** - documents the SFTP process and maintence of files from Avrick
   
-  While the above will explain each segment in more detail, the diagram below displays a complete overview of all current Esquire processes. 
+  While the above will explain each initiative in more detail, the diagram below displays a complete overview of all current Esquire processes. 
   
   ![ESQ Timing Updated 2021-01-14](https://user-images.githubusercontent.com/51334006/106657586-35e3ea80-656a-11eb-9047-162fc2da6ad5.png)
