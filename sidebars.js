@@ -12,7 +12,16 @@ module.exports = {
                      items: ['esquire-ads-metrics-eltoro', 'esquire-ads-metrics-googleads']},
              { type: 'category', 
                label:'Ads Automation', 
-                     items: ['esquire-auto-overview']},
+                     items: ['esquire-auto-overview', 
+                              { type: 'category', 
+                                label:'New Movers', 
+                                       items: ['esquire-auto-NM-overview', 'esquire-auto-NM-s3','esquire-auto-NM-lambda','esquire-auto-NM-redshift-glue' ]
+                              },
+                              { type: 'category', 
+                                label:'Venue Replay/ InMarket Shoppers', 
+                                       items: ['esquire-auto-VR-overview', 'esquire-auto-VR-s3','esquire-auto-VR-lambda','esquire-auto-VR-redshift-glue' ]
+                            } ]
+              },
              { type: 'category', 
                label:'Salesforce Architecture', 
                      items: ['esquire-sf-overview']},
