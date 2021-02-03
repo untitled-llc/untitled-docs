@@ -7,7 +7,14 @@ slug: /esquire/ads_automation/NM/overview
 
 This process is used to automate the transformation of Avrick New Mover's data to a custom segment in Xandr or a custom audience in Facebook. (Avrick being a 35 year old database industry for new mover data across the US). The Avrick New Mover's data is a collection of self-reported changes of address by the mover themselves. The Avrick company delivers a csv file through FTP containing all of the mover's new addresses from across the United States, for that week. The csv file looks like the example below. 
 
+![](https://user-images.githubusercontent.com/71343561/106802053-727a1980-6630-11eb-89bd-caf6b54d1320.png)
+
 ## Steps
+
+![Esquire New Mover](https://user-images.githubusercontent.com/71343561/106802906-938f3a00-6631-11eb-9e18-d00975346a44.png)
+
+
+
 1. The csv file of new mover adresses is delivered to S3 [*esquire-movers/AVRICK-combined-newmovers-weekly/*](https://s3.console.aws.amazon.com/s3/buckets/esquire-movers?region=us-east-2&prefix=AVRICK-combined-newmovers-weekly/&showversions=false)
 
 2. The S3 bucket triggers the Lambda function [**delete_movers**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/delete_movers?tab=configuration). This function holds much of the Avrick S3 re-formatting and moving around/combining of the files. In relation to the New Mover process, this function moves the csv file from Avrick into a new S3 folder [*esquire-movers/movers-3-month-segment-partitioned/*](https://s3.console.aws.amazon.com/s3/buckets/esquire-movers?region=us-east-2&prefix=movers-3-month-segment-partitioned/&showversions=false). It also triggers the AWS Glue job, [**esquire-movers**](https://us-east-2.console.aws.amazon.com/glue/home?region=us-east-2#etl:tab=jobs).
