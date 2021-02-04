@@ -41,7 +41,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 3. It then writes this file to S3 *mover-match-and-parse/full-matched-files/*
 4. The dataframe is then grouped based upon the child_id__c. (Thr child_id__c is the Salesforce ID for each of the unique stores)
 5. The function itterates through each child_id__c section and saves to file to S3 *mover-match-and-parse/**store_name**_**sf_id**/*
-6. It then splits the dataframe down to soley the address related columns and uploads to S3 *esquire-onspot-va/input/new*. This folder is used in the OnSpot API call to be used as the input addresses. The file is saved using a long name that is used through this process for uniqueness and clarity. The file name is : *"**store_name** _ **sf_id** _ **todaysdate** _ **W#** _ NM _ act _ **fb_id** _ **xandr_id**.csv"* . All of the variables in this file name are required to stay attached to the specific file. 
+6. It then splits the dataframe down to soley the address related columns and uploads to S3 *esquire-onspot-va/input/new*. This folder is used in the OnSpot API call to be used as the input addresses. The file is saved using a long name that is used through this process for uniqueness and clarity. The file name is : ***store_name**\_**sf_id**\_**todaysdate**\_**W#**\_NM\_act\_**fb_id**\_**xandr_id**.csv* . All of the variables in this file name are required to stay attached to the specific file. 
 
 
 
