@@ -39,8 +39,8 @@ NOTE - This is the procedure, described in the overview, uses the Avrick new mov
 2. It then finds the week_number of today's date 
 NOTE - there is a "band-aid" logic line due to the complexity of solving for the week_number. It should not ever reach this line if run on the usual schedule
 3. It then writes this file to S3 *mover-match-and-parse/full-matched-files/*
-4. The dataframe is then grouped based upon the child_id__c. (Thr child_id__c is the Salesforce ID for each of the unique stores)
-5. The function itterates through each child_id__c section and saves to file to S3 *mover-match-and-parse/**store_name**_**sf_id**/*
+4. The dataframe is then grouped based upon the child_id__c. (The child\_id\__c is the Salesforce ID for each of the unique stores)
+5. The function itterates through each child\_id\__c section and saves to file to S3 *mover-match-and-parse/**store\_name**\_**sf\_id**/*
 6. It then splits the dataframe down to soley the address related columns and uploads to S3 *esquire-onspot-va/input/new*. This folder is used in the OnSpot API call to be used as the input addresses. The file is saved using a long name that is used through this process for uniqueness and clarity. The file name is : **store\_name**\_**sf\_id**\_**todaysdate**\_**W#**\_NM\_act\_**fb\_id**\_**xandr\_id**.csv . All of the variables in this file name are required to stay attached to the specific file. 
 
 
