@@ -15,4 +15,5 @@ The following documentation provides information on:
 
   While the above initiatives will be explained in more detail, the diagram below displays a complete overview of all current Esquire processes. 
 
-  ![ESQ Timing Updated 2021-01-14](https://user-images.githubusercontent.com/51334006/106657586-35e3ea80-656a-11eb-9047-162fc2da6ad5.png)
+  ![ESQ Timing Updated 2021-02-04](https://user-images.githubusercontent.com/51334006/106918595-541b2900-66d7-11eb-9f98-d431808f4396.png)
+
