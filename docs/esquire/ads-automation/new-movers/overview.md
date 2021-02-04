@@ -5,6 +5,16 @@ sidebar_label: Overview
 slug: /esquire/ads_automation/NM/overview
 ---
 
+
+
+## Table of Contents 
+* [Brief Explanation](#brief-explanation)
+* [Steps](#steps)
+* [Supplemental Information](#supplemental-information)
+
+
+## Brief Explanation
+
 This process is used to automate the transformation of Avrick New Mover's data to a custom segment in Xandr or a custom audience in Facebook. (Avrick being a 35 year old database industry for new mover data across the US). The Avrick New Mover's data is a collection of self-reported changes of address by the mover themselves. The Avrick company delivers a csv file through FTP containing all of the mover's new addresses from across the United States, for that week. The csv file looks like the example below. 
 
 ![](https://user-images.githubusercontent.com/71343561/106802053-727a1980-6630-11eb-89bd-caf6b54d1320.png)
@@ -38,3 +48,16 @@ This process is used to automate the transformation of Avrick New Mover's data t
 10. The S3 folder triggers the SQS [**xander_audience**](https://us-east-2.console.aws.amazon.com/sqs/v2/home?region=us-east-2#/queues/https%3A%2F%2Fsqs.us-east-2.amazonaws.com%2F646976236542%2Fxandr_audience), that in turns triggers the Lambda [**xander-ads-automation**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/xandr-ads-automation). This lambda function makes the call to OnSpot API to post the hashed device IDs as a Xandr custom segment under the corresponding store's Xandr Ad account. It also triggers the SQS [**facebook_audience**](https://us-east-2.console.aws.amazon.com/sqs/v2/home?region=us-east-2#/queues/https%3A%2F%2Fsqs.us-east-2.amazonaws.com%2F646976236542%2Ffacebook_audience). 
 
 11. This SQS will trigger the Lambda function [**fb-ads-automation-lambda**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/fb-ads-automation-lambda). This function makes the call to OnSpot API to post the hashed device IDs as a Facebook custom audience under the corresponding store's Facebook Ad account. 
+
+
+## Supplemental Information
+
+### Split of Some Lambda Functions and S3 Buckets in the AWS Virginia Region 
+The Lambda functions **onspot-address-devices-request** and **onspot-s3-output-copy**, the SQS **onspot\_address\_devices**, and the S3 bucket **esquire-onspot-va** are all under the AWS region US East N. Virginia (us-east-1) while the rest of Esquire's AWS is situated in US East Ohio (us-east-2). These 4 pieces are in a different AWS region because the OnSpot API can only use input body data that is inside an S3 in the same region as them, us-east-1. [The transfer of data using SQS is free between the same region (and is not between different regions once over 1GB of data).](https://aws.amazon.com/sqs/faqs/#:~:text=You%20can%20transfer%20data%20between,information%2C%20see%20Amazon%20SQS%20Pricing). This is why the SQS and Lambda functions are also in the us-east-1 region. 
+
+There is a way to transfer data between different regions using SQS, but the IAM policy must be customized and the ARN cannot include the region. Look to this StackOverflow for more information (https://stackoverflow.com/questions/32527976/allow-aws-sqs-queue-access-across-regions/32530222)
+
+### Reason There are Two Separate SQS queues for Xandr and Facebook 
+The Xandr SQS, **xandr_audience** is original set off by an S3 bucket drop into *esquire-segment-upload-bucket/NM/*. You cannot just have one **ad_audience** SQS that sends the message from S3 to both Lambda's because SQS can only sucessfully deliver once. It can not have one source message and two delivered messages of that source. You also cannot connect both SQSs, **xandr_audience** and **facebook_audience** to the S3 because S3 doesnot allow an overlap of prefix paths for two SQS's. Or in other words, S3 does not allow two SQS to be set on the same event folder path. 
+
+In theory, you could set up the **xandr_audience** SQS on a different Xandr folder and **facebook_audience** SQS on a differnt Facebook folder and drop each file in both folders, but this would just add more work and repetition to the process. 
