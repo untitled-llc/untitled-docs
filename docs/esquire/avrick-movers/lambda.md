@@ -57,7 +57,7 @@ slug: /esquire/avrick_movers/lambda
   <br /> NOTE: The Glue job is started here because at the time I did not know about S3 waiters, which allows you to 'wait' until a file has been dropped to a specific location. So, placing the job run here allows the file enough time to successfuly copy to the *movers-3-month-segment-partitioned/* folder before running.
   
   6. Determine the number of files in the *archived-data/archive movers-3-month-segment-partitioned/* folder. <br /> 
-   <br /> NOTE: Again, this is done because I didn't know about waiters. This will eventually help me determine if the number of files in the archive folder has gone up, meaning that another file had been added in the archive. 
+   <br /> NOTE: Again, this is done because I didn't know about waiters. This will eventually help me determine if the number of files in the archive folder has gone up, meaning that another file had been added in the archive. <br/>
    
   7. Determine the number of files in the *movers-3-month-segment-partitioned/* folder
   8. If there are 2 - 12 files in the folder, combine all the available files into one. 
@@ -67,7 +67,7 @@ slug: /esquire/avrick_movers/lambda
   12. If the the numbers in step 6 and step 11 are not equal, combine all the files in *movers-3-month-segment-partitioned/* folder. 
   13. Upload the combined movers file to the following path: *esquire-movers/movers-3-month-segment-combined/*
    
- NOTE: All files that are copied into the archive folders must be named with some sort of date identifer at the end for use by Esquire. 
+ NOTE: All files that are copied into the archive folders must be named with some sort of date identifer at the end for use by Esquire. <br /> 
 
 
 ## [**delete_combined_movers**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/delete_combined_movers?tab=configuration)
