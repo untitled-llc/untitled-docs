@@ -21,7 +21,10 @@ slug: /esquire/ads_automation/NM/lambda
 **Layers** -   psycopg2-py38 ARN\
 **Function** - 
 
-This function connects with **dev** database on the esquire-myraid-prod-cluster in Redshift and "CALL"s the procedure public.sp_movers_files_unload(). This is the procedure, described in the overview, uses the Avrick new mover's addresses to connnect with our Redshift table and find which addresses connect with which stores. The Redshift tables are made using Esquire's Salesforce custom objects through a connection by Stitch. 
+1) This function connects with **dev** database on the esquire-myraid-prod-cluster in Redshift 
+2) It "CALL"s the procedure public.sp_movers_files_unload()
+
+NOTE - This is the procedure, described in the overview, uses the Avrick new mover's addresses to connnect with our Redshift table and find which addresses connect with which stores. The Redshift tables are made using Esquire's Salesforce custom objects through a connection by Stitch. 
 
 ## [matching_avrick_zips](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/matching_avrick_zips) 
 **Trigger** - S3 folder path *esquire-redshift-unload-ads-automation/new-movers/* with the Event Type "ObjectCreated"\
