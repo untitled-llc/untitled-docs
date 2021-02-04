@@ -82,7 +82,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 3. If the xandr_id is null it ends the function because the current event file doesnot have a Xandr Ad Account
 4. It then ensures the length of the store_name is less than or equal to 28 characters
    - if its not.. it will remove the word "furniture" and then the trailing characters to have under 29 characters
-5. The segment_name is defined as the "**store _ name** _ **sf _ id** _ **audience _ type**"
+5. The segment_name is defined as the "**store\_name**\_**sf_id**\_**audience\_type**"
 6. It then uses the Xandr API to find the respective segment_id.
    - If a segment_id doesnot exist it will create a new segment
 7. The function makes an API call to OnSpot, entering the S3 sourcePath *esquire-onspot-va/output/archive/* , the segment_name, the segment_id, the Esquire auth information, and a callback_url. OnSpot will use the sourcePath to find the "input" of hashed devices that Esquire would like added to this specific segment. It will update the segment_id given.
@@ -99,7 +99,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 2. If the fb_id is null it ends the function because the current event file doesnot have a Xandr Ad Account
 3. It then ensures the length of the store_name is less than or equal to 28 characters
    - if its not.. it will remove the word "furniture" and then the trailing characters to have under 29 characters
-4. The custom_audience_name is defined as the "**store _ name** _ **sf _ id** _ **segment _ date** _ **audience _ type**" 
+4. The custom_audience_name is defined as the "**store\_name**\_**sf\_id**\_**segment\_date**\_**audience\_type**" 
 5. The function makes an API call to OnSpot, entering the S3 sourcePath *esquire-onspot-va/output/archive/* , the custom_audience_name, the Esquire auth information, and a callback_url. OnSpot will use the sourcePath to find the "input" of hashed devices that Esquire would like added to this specific custom audience. It will create a new custom audience on Facebook everytime with the entered hashed devices. 
 
 
