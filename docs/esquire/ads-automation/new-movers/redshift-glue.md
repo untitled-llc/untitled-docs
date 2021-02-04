@@ -19,12 +19,12 @@ The following Redshift and AWS Glue jobs are listed in the order they appear wit
 
 
 2. [**movers_unload_file.sql**](https://github.com/Esquire-Media/data-deduplication/blob/master/movers_unload_file.sql) (Redshift Procedure) This procedure is used to join the Avrick new mover data with Esquire's current client information that comes from Salesforce and is saved on Redshift in tables for each custom object.
-       1. Combines the *add1* and *add2* and capatilizes the first letter of each word in the new *combined_address* column
-       2. It also capitalizes the first letter of each word in the city
-       3. It then only pulls the *combined_address, city, st, zip, and zip4* from the **movers** table.
-       4. This table's *zip* is inner joined with the **Avrick\_Zip\_id\__c** on *zipcode*
-       5. The *child\_id|__c* from **Avrick\_zip\_id\__c** is inner joined with the *id* from **child\_id\__c**
-       6. The *parent\_account\__c* from **child\_id\__c** is then inner joined with the *account\_c* from **dashboard\_source\__c**
-       7. All of these inner joined tables are then left joined on the **dashboard\_source\__c** table to add a *facebook, xander, el toro*, and *google ads* columns
-       8. It filters out the *account\__c* if they are not inside the table **movers\_sf\_ids**
-       9. Finally it is grouped by *combined_address, zip, zip4, city, st, store\_name\__c, child\_id\__c, facebook, xandr, el toro, google ads* and uploaded to S3 *redshift-unload-ads-automation/new-movers/movers-unload.csv*
+      1. Combines the *add1* and *add2* and capatilizes the first letter of each word in the new *combined_address* column
+      2. It also capitalizes the first letter of each word in the city
+      3. It then only pulls the *combined_address, city, st, zip, and zip4* from the **movers** table.
+      4. This table's *zip* is inner joined with the **Avrick\_Zip\_id\__c** on *zipcode*
+      5. The *child\_id|__c* from **Avrick\_zip\_id\__c** is inner joined with the *id* from **child\_id\__c**
+      6. The *parent\_account\__c* from **child\_id\__c** is then inner joined with the *account\_c* from **dashboard\_source\__c**
+      7. All of these inner joined tables are then left joined on the **dashboard\_source\__c** table to add a *facebook, xander, el toro*, and *google ads* columns
+      8. It filters out the *account\__c* if they are not inside the table **movers\_sf\_ids**
+      9. Finally it is grouped by *combined_address, zip, zip4, city, st, store\_name\__c, child\_id\__c, facebook, xandr, el toro, google ads* and uploaded to S3 *redshift-unload-ads-automation/new-movers/movers-unload.csv*
