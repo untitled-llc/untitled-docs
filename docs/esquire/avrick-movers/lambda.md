@@ -56,8 +56,10 @@ slug: /esquire/avrick_movers/lambda
   5. Start the **esquire-movers** Glue job. <br />
   <br /> NOTE: The Glue job is started here because at the time I did not know about S3 waiters, which allows you to 'wait' until a file has been dropped to a specific location. So, placing the job run here allows the file enough time to successfuly copy to the *movers-3-month-segment-partitioned/* folder before running. <br/>
   
+  
   6. Determine the number of files in the *archived-data/archive movers-3-month-segment-partitioned/* folder. <br /> 
    <br /> NOTE: Again, this is done because I didn't know about waiters. This will eventually help me determine if the number of files in the archive folder has gone up, meaning that another file had been added in the archive. <br/>
+   
    
   7. Determine the number of files in the *movers-3-month-segment-partitioned/* folder
   8. If there are 2 - 12 files in the folder, combine all the available files into one. 
