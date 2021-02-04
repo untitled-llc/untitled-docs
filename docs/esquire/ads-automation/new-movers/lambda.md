@@ -41,7 +41,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 3. It then writes this file to S3 *mover-match-and-parse/full-matched-files/*
 4. The dataframe is then grouped based upon the child_id__c. (Thr child_id__c is the Salesforce ID for each of the unique stores)
 5. The function itterates through each child_id__c section and saves to file to S3 *mover-match-and-parse/**store_name**_**sf_id**/*
-6. It then splits the dataframe down to soley the address related columns and uploads to S3 *esquire-onspot-va/input/new*. This folder is used in the OnSpot API call to be used as the input addresses. The file is saved using a long name that is used through this process for uniqueness and clarity. The file name is : **store_name** _ **sf_id** _ **todaysdate** _ **W#** _NM_act_ **fb_id** _ **xandr_id**.csv. All of the variables in this file name are required to stay attached to the specific file. 
+6. It then splits the dataframe down to soley the address related columns and uploads to S3 *esquire-onspot-va/input/new*. This folder is used in the OnSpot API call to be used as the input addresses. The file is saved using a long name that is used through this process for uniqueness and clarity. The file name is : *"**store_name** _ **sf_id** _ **todaysdate** _ **W#** _ NM _ act _ **fb_id** _ **xandr_id**.csv"* . All of the variables in this file name are required to stay attached to the specific file. 
 
 
 
@@ -82,7 +82,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 3. If the xandr_id is null it ends the function because the current event file doesnot have a Xandr Ad Account
 4. It then ensures the length of the store_name is less than or equal to 28 characters
    - if its not.. it will remove the word "furniture" and then the trailing characters to have under 29 characters
-5. The segment_name is defined as the **store_name** _ **sf_id** _ **audience_type**
+5. The segment_name is defined as the "**store _ name** _ **sf _ id** _ **audience _ type**"
 6. It then uses the Xandr API to find the respective segment_id.
    - If a segment_id doesnot exist it will create a new segment
 7. The function makes an API call to OnSpot, entering the S3 sourcePath *esquire-onspot-va/output/archive/* , the segment_name, the segment_id, the Esquire auth information, and a callback_url. OnSpot will use the sourcePath to find the "input" of hashed devices that Esquire would like added to this specific segment. It will update the segment_id given.
@@ -99,7 +99,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 2. If the fb_id is null it ends the function because the current event file doesnot have a Xandr Ad Account
 3. It then ensures the length of the store_name is less than or equal to 28 characters
    - if its not.. it will remove the word "furniture" and then the trailing characters to have under 29 characters
-4. The custom_audience_name is defined as the **store_name** _ **sf_id** _ **segment_date** _ **audience_type** 
+4. The custom_audience_name is defined as the **store _ name** _ **sf _ id** _ **segment _ date** _ **audience _ type** 
 5. The function makes an API call to OnSpot, entering the S3 sourcePath *esquire-onspot-va/output/archive/* , the custom_audience_name, the Esquire auth information, and a callback_url. OnSpot will use the sourcePath to find the "input" of hashed devices that Esquire would like added to this specific custom audience. It will create a new custom audience on Facebook everytime with the entered hashed devices. 
 
 
