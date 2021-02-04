@@ -11,16 +11,15 @@ The following Redshift and AWS Glue jobs are listed in the order they appear wit
 
 
 1.  [**esquire-movers**](https://us-east-2.console.aws.amazon.com/glue/home?region=us-east-2#etl:tab=jobs) (AWS Glue Job) This Glue job is triggered from within the **delete_movers** Lambda function. 
-
        1. The Glue job creates a dataframe based upon the AWS Glue database *movers* table called *movers_3-month_segment_partitioned*. This table was orignally created based upon a csv file  of new mover addresses from Avrick. 
        2. It then reformats the date column that was previously called *keycode2* and was in the format yyyyMMdd, to a column called *formatted_date* in the format yyyy-MM-dd. This column is only used by the following redshift SQL procedure to only look at mover data from the latest week. It is reformatted to match PostgresSQL Language max() function. 
        3. It enforces the columns [ *add1, add2, city, st, zip, zip4, dt, keycode2, formatted_date*]
        4. Drops the Null Fields
        5. Writes the dataframe to Redshift cluster *esquire-myriad-prod*, database *dev*, table *movers*. 
 
-2. [**movers_unload_file.sql**](https://github.com/Esquire-Media/data-deduplication/blob/master/movers_unload_file.sql) (Redshift Procedure) This procedure is used to join the Avrick new mover data with Esquire's current client information that comes from Salesforce and is saved on Redshift in tables for each custom object.
 
-       1. Combines the add1 and add2 and capatilizes the first letter of each word in the new *combined_address* column
+2. [**movers_unload_file.sql**](https://github.com/Esquire-Media/data-deduplication/blob/master/movers_unload_file.sql) (Redshift Procedure) This procedure is used to join the Avrick new mover data with Esquire's current client information that comes from Salesforce and is saved on Redshift in tables for each custom object.
+       1. Combines the *add1* and *add2* and capatilizes the first letter of each word in the new *combined_address* column
        2. It also capitalizes the first letter of each word in the city
        3. It then only pulls the *combined_address, city, st, zip, and zip4* from the **movers** table.
        4. This table's *zip* is inner joined with the **Avrick\_Zip\_id\__c** on *zipcode*
