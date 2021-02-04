@@ -91,5 +91,5 @@ slug: /esquire/avrick_movers/lambda
 
 **Function** - 
   1. Connect to the **esquire-myriad-prod-cluster** in Redshift. 
-  2. Delete all rows where the *formatted_date* (this is inserted to the table when the **esquire-movers** Glue job runs) is the oldest. 
+  2. Delete all rows where the *formatted_date* (this is inserted to the table when the [**esquire-movers**](https://us-east-2.console.aws.amazon.com/glue/home?region=us-east-2#editJob:isNewlyCreated=false;jobName=esquire-movers) Glue job runs) is the oldest. 
   3. Close the connect to the cluster. 
