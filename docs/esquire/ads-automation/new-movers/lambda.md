@@ -48,7 +48,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 ## [onspot-address-devices-request](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/onspot-address-devices-request)
 **Trigger** - SQS **onspot_address_devices** can send up to 10 messages in a batch
 
-**Layers** - NA
+**Layers** - N/A
 
 **Function** - 
 
@@ -61,7 +61,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 ## [onspot-s3-output-copy](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/onspot-s3-output-copy)
 **Trigger** - S3 folder path *esquire-onspot-va/output/new* with the Event Type "ObjectCreated"
 
-**Layers** - NA
+**Layers** - N/A
 
 **Function** - 
 
@@ -73,7 +73,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 ## [xandr-ads-automation](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/xandr-ads-automation)
 **Trigger** - SQS **xandr_audience** can send only one mesasage in a batch 
 
-**Layers** - NA
+**Layers** - N/A
 
 **Function** -   
 
@@ -91,7 +91,7 @@ NOTE - there is a "band-aid" logic line due to the complexity of solving for the
 ## [fb-ads-automation-lambda](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/fb-ads-automation-lambda)
 **Trigger** - SQS **facebook_audience** can send only one mesasage in a batch 
 
-**Layers** - NA
+**Layers** - N/A
 
 **Function** -  
 
