@@ -9,7 +9,7 @@ slug: /esquire/overview
 The following documentation provides information on: 
   - **Onspot Observations and Zipcodes** - documents the automation process for obtaining device information for foot traffic analysis 
   - **Ads Metrics** - documents the automated ad metrics reporting for Facebook, Google Ads, Xandr and El Toro
-  - **Ads Automation** - documents the automation process for creating Facebook audiences and Xandr segments
+  - **Ads Automation** - documents the automation process for creating Facebook audiences and Xandr segments for New Movers and Venue Replay/In Market Movers
   - **Salesforce Architecture** - documents the organization of Salesforce
   - **Avrick Movers** - documents the SFTP process and maintence of files from Avrick
 
