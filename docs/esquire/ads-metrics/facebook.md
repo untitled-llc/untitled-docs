@@ -8,7 +8,9 @@ slug: /esquire/ads_metrics/facebook
 # Setting up a Facebook Connection in Stitch
 1. Add a Facebook integration 
 2. Name the integration with the following format (ad account name)\_(salesforce id)\_**facebook** <br />
-:::note Stitch connection naming conventions max out at 50 characters. It is CRUTIAL that the connection ends with **\_facebook**, otherwise Facebook data will not be added to Redshift downstream. Additionally the *ad account name* portion of the naming convention can have as many underscores as wanted.:::
+:::
+note Stitch connection naming conventions max out at 50 characters. It is CRUTIAL that the connection ends with **\_facebook**, otherwise Facebook data will not be added to Redshift downstream. Additionally the *ad account name* portion of the naming convention can have as many underscores as wanted.
+:::
 
 ```
 Examples: 
