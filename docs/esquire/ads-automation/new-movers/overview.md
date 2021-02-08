@@ -15,7 +15,7 @@ slug: /esquire/ads_automation/NM/overview
 
 ## Brief Explanation
 
-This process is used to automate the transformation of Avrick New Mover's data to a custom segment in Xandr or a custom audience in Facebook. (Avrick being a 35 year old database industry for new mover data across the US). The Avrick New Mover's data is a collection of self-reported changes of address by the mover themselves. The Avrick company delivers a csv file through FTP containing all of the mover's new addresses from across the United States, for that week. The csv file looks like the example below. 
+This process is used to automate the transformation of Avrick New Mover's data to a custom segment in Xandr or a custom audience in Facebook. This allows Esquire to cater their advertisements, on both Facebook and Xander, to a particular aundience of new movers. New movers are sought after customers, particularly for furniture and mattress companies. This is because people that are moving are much more likely to need a new couch or bed and be willing to spend a lot of money at once. The company Esquire purchases the new data from, Avrick, is a 35 year old database industry for new mover data across the US. The Avrick New Mover's data is a collection of self-reported changes of address by the mover themselves. The Avrick company delivers a csv file through FTP containing all of the mover's new addresses from across the United States, for that week. The csv file looks like the example below. 
 
 ![](https://user-images.githubusercontent.com/71343561/106802053-727a1980-6630-11eb-89bd-caf6b54d1320.png)
 
