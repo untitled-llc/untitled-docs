@@ -4,7 +4,7 @@ title: Overview
 sidebar_label: Overview
 slug: /esquire/overview
 ---
-[Esquire Advertising](https://esquireadvertising.com/) is advertising company based in North Carolina that specilizes in utilizing geoloation and device data to effectively advertise for furniture, mattress and automotive companies. The relationship between Untitled and Esquire Advertising started in September 2019 and has resulted in multiple different initiatives to help automate different processes, create better ad reporting and better organize different aspects of thier business. 
+[Esquire Advertising](https://esquireadvertising.com/) is an advertising company based in North Carolina that specilizes in utilizing geoloation and device data to effectively advertise for furniture, mattress and automotive companies. The relationship between Untitled and Esquire Advertising started in September 2019 and has resulted in multiple different initiatives to help automate different processes, create better ad reporting and better organize different aspects of thier business. 
 
 The following documentation provides information on: 
   - **Onspot Observations and Zipcodes** - documents the automation process for obtaining device information for foot traffic analysis 
