@@ -22,7 +22,7 @@ The architecture for this process is complicated, but can broken down into two m
 
 Singer.io is an open-source, JSON-based data shifting, ETL framework. It is used to move data between an API source and a chosen destination. In reference to this Esquire project, the OnSpot Hyper Targeted Marketing API is the source and the destination is an AWS S3 bucket. It was created to gather information from 3 different OnSpot API endpoints: devices, zipcodes, and observations. Currently, Esquire uses the tap-onspot only for the zipcode and observation endpoint. The zipcode endpoint (POST */geoframe/demographics/aggregate/zipcodes*) is used to send location information and a date range, and returns the household zipcode for the devices found at the given location. It will return a json response like what is shown below, where the response is for one location and given date range, and the count of each zipcode is associated with a device tracked at that lcoation on the entered date:
 
-''' 
+```
 {
 	"name": "EF~00380", 
 	"totalMatched": 4, 
@@ -38,10 +38,10 @@ Singer.io is an open-source, JSON-based data shifting, ETL framework. It is used
 		"message": "SUCCESS", 
 		"id": "08d21d07-87ac-40e1-bdd6-dca57dc7b0fe"}
 }
-'''
+```
 The observations endpoint (POST */geoframe/all/observations*) is used to send location information and a date range, and returns the "observations" within that location. The observations being the devices tracked in that location and the time they were tracked. The device will be a hashed indetification. The response looks like the example below:
 
-'''
+```
 {
 	"name": "EF~01573",
 	 "observations": 
@@ -55,11 +55,11 @@ The observations endpoint (POST */geoframe/all/observations*) is used to send lo
 	  	"message": "SUCCESS", 
 	  	"id": "08d30a10-d884-43a2-ac62-13a6ae070f38"}
 }
-'''
+```
 
 The input for both of these OnSpot API endpoints is the same, including the lattitude and longitude corrdinates of a polygon location and a start and end date range. The input body looks like the example below: 
 
-'''
+```
 {
   "type": "FeatureCollection",
   "features": [
@@ -103,7 +103,7 @@ The input for both of these OnSpot API endpoints is the same, including the latt
     }
   ]
 }
-'''
+```
 
 A further explanation of exactly how the singer.io tap-onspot works is described HERE, but for the sake of this brief overview, the input and output of the API will suffice.
 
