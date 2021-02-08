@@ -2,5 +2,5 @@
 id: overview
 title: Overview
 sidebar_label: Overview
-slug: /esquire/ads_metrics/overview
+slug: /esquire/ads-metrics/overview
 ---
