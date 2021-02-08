@@ -9,7 +9,7 @@ module.exports = {
                      items: ['esquire/zipcodes-observations/overview','esquire/zipcodes-observations/lambda', 'esquire/zipcodes-observations/s3','esquire/zipcodes-observations/redshift-glue']}, 
              { type: 'category', 
                label:'Ads Metrics', 
-                     items: ['esquire/ads-metrics/overview','esquire/ads-metrics/eltoro', 'esquire/ads-metrics/facebook']},
+                     items: ['esquire/ads-metrics/overview', 'esquire/ads-metrics/facebook', 'esquire/ads-metrics/xandr', 'esquire/ads-metrics/eltoro']},
              { type: 'category', 
                label:'Ads Automation', 
                      items: ['esquire/ads-automation/overview', 
