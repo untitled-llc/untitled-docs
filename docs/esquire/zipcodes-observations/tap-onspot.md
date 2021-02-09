@@ -212,7 +212,7 @@ This is the core of this git repository. It holds the sync() function that bring
 12. Finds the min_bookmark_value and max_bookmark_value and logs these values. These variables are useless and never used for the rest of the process. The logic used to solve for them results in every location returning the same min_bookmark_value and max_bookmark_value exactly 30 days back. 
 13. Uses a long set of python logic to set the start_date to 30 days ago and the end_date to 2 days ago. This is the same for every single location. 
 14. Itterates through each date in the list of dates between start_date and end_date 
-15. Checks if bookmark_dt <= query_date or days_to_go <= latency_days. This check should work for every location. Every location will run for every date. 
+15. Checks if bookmark_dt <= query_date or days_to_go <= latency_days. This check should work for every location because **latency_days**=30 and **days_to_go** should go up to 29 days. Every location will run for every date. (between 30days ago and 2 days ago).
 16. Logs each location and date the OnSpot API wil be running for
 17. Make the OnSpot API call for all locations in the current "body" for the current date. This should be all 50 locations that were in the input location file. 
 18. It checks if there was an error in the respoonse... 
