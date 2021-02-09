@@ -36,7 +36,7 @@ slug: /esquire/avrick_movers/lambda
 **Layers** - NA
 
 **Function** - 
-  1. A event is reveived by the function that a new file has dropped into the *AVRICK-pendingfile-escrow-movers/* folder. 
+  1. An event is received by the function that a new file has dropped into the *AVRICK-pendingfile-escrow-movers/* folder. 
   2. Using metadata from the files, determine which of the two files is the oldest. 
   3. The oldest file is copied to the following path: *esquire-movers/archived-data/archive pending-escrow-movers/* 
   4. The oldest file is deleted from the following path: *esquire-movers/AVRICK-pendingfile-escrow-movers/*
