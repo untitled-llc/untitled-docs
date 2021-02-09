@@ -58,8 +58,8 @@ Since this function is used for other parts in the ads metric automation, the be
   4. Run [ads deduplication procedure](https://github.com/Esquire-Media/data-deduplication/blob/master/Facebook/ads_table.sql) or the [insights deduplication procedure](https://github.com/Esquire-Media/data-deduplication/blob/master/Facebook/insights_table.sql)
   5. Close the connection to the cluster
   
-  ## S3 Buckets 
-  This documentation is for a clearer description of what files/information can be found within the **esquire-datalake** and **esquire-datalake-combined** buckets
+## S3 Buckets 
+This documentation is for a clearer description of what files/information can be found within the **esquire-datalake** and **esquire-datalake-combined** buckets
   
   1. [*esquire-datalake/*](https://s3.console.aws.amazon.com/s3/buckets/esquire-datalake?region=us-east-2&tab=objects) <br />
   This bucket serves as a dumping ground for all files relating to Facebook ads and Facebook ads_insights along with other miscellaneous files that don't necessarily pertain to Esquire's clients ads, like Google Ads, Google Sheets and Salesforce. For all of the Facebook integrations, when Stitch first drops a file, the name given by Esquire for the Stitch integration is used as the folder name, and the files relating to that integration will fall under those folders thereafter. So each client that Esquire has advertising on Facebook will have their own folder in the **esquire-datalake** bucket that follows the naming convention seen [here](#setting-up-a-facebook-connection-in-stitch). 
