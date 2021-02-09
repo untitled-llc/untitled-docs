@@ -157,7 +157,7 @@ This file is used for parameter arguements to pass to the target output file. Th
 ```
 
 
-## tap-onpsot Files:
+## tap-onspot Files:
 
 ### __init__.py
 This file contains the main() function that will automatically be run when the entire git repo is run in the command line. The main function has 3 main tasks:
