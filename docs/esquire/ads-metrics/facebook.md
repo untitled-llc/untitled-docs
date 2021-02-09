@@ -9,12 +9,12 @@ slug: /esquire/ads_metrics/facebook
 1. Add a Facebook integration 
 2. Name the integration with the following format (ad account name)\_(salesforce id)\_**facebook** <br />
 :::note
-Stitch connection naming conventions max out at 50 characters. It is CRUTIAL that the connection ends with **\_facebook**, otherwise Facebook data will not be added to Redshift downstream. Additionally the *ad account name* portion of the naming convention can have as many underscores as wanted. <br />
+Stitch connection naming conventions max out at 50 characters. It is CRUTIAL that the connection ends with **\_facebook**, otherwise Facebook data will not be added to Redshift downstream. Additionally the *ad account name* portion of the naming convention can have as many underscores as wanted.
+::: <br />
 Examples: <br />
-  - ad_appliance_center_0015a00002ri7rjqa1_facebook <br />
-  - afw_0015a00002bzql4qap_facebook <br />
-  - bostonappliance__0015a00002nqga6qap_facebook <br />
-:::
+   - ad_appliance_center_0015a00002ri7rjqa1_facebook
+   - afw_0015a00002bzql4qap_facebook
+   - bostonappliance__0015a00002nqga6qap_facebook
 
 3. Authorize the connection
 4. Select the account you want to pull data from
