@@ -89,7 +89,7 @@ slug: /esquire/avrick_movers/lambda
 
 ## [**delete_esquire_myriad_prod_movers**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions?f0=true&n0=false&op=and&v0=delete)
 
-**Trigger** - Event based Cloudwatch Rule, **myriad-movers-delete-and-unload** that will tigger on the succession of the **esquire-movers** Glue job.
+**Trigger** - Event based Cloudwatch Rule, **myriad-movers-delete-and-unload** that will tigger on the success of the **esquire-movers** Glue job.
 
 **Layers** - [arn:aws:lambda:us-east-2:898466741470:layer:psycopg2-py37:1](https://github.com/jetbridge/psycopg2-lambda-layer/blob/master/README.md)
 
