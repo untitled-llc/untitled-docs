@@ -54,9 +54,8 @@ Since this function is used for other parts in the ads metric automation, the be
 **Function** -
   1. An event is received by the function that either the [**facebook_ads**](https://us-east-2.console.aws.amazon.com/glue/home?region=us-east-2#editJob:isNewlyCreated=false;jobName=facebook_ads) or [**facebook_insights**](https://us-east-2.console.aws.amazon.com/glue/home?region=us-east-2#editJob:isNewlyCreated=false;jobName=facebook_insights) Glue job has succeeded. 
   2. Connect to the **esquire-myriad-prod-cluster** in Redshift
-  3. The top level folder (ex. *afw_0015a00002bzql4qap_facebook*) is saved as a variable, *top_level_fld*
-  4. Run [ads deduplication procedure](https://github.com/Esquire-Media/data-deduplication/blob/master/Facebook/ads_table.sql) or the [insights deduplication procedure](https://github.com/Esquire-Media/data-deduplication/blob/master/Facebook/insights_table.sql)
-  5. Close the connection to the cluster
+  3. Run [ads deduplication procedure](https://github.com/Esquire-Media/data-deduplication/blob/master/Facebook/ads_table.sql) or the [insights deduplication procedure](https://github.com/Esquire-Media/data-deduplication/blob/master/Facebook/insights_table.sql)
+  4. Close the connection to the cluster
   
 ## S3 Buckets 
 This documentation is for a clearer description of what files/information can be found within the **esquire-datalake** and **esquire-datalake-combined** buckets
