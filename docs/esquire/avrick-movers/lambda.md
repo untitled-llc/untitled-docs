@@ -49,7 +49,7 @@ slug: /esquire/avrick_movers/lambda
 **Layers** - NA
 
 **Function** - 
-  1. A event is reveived by the function that a new file has dropped into the *AVRICK-combined-newmovers-weekly/* folder. 
+  1. An event is received by the function that a new file has dropped into the *AVRICK-combined-newmovers-weekly/* folder. 
   2. The new file is copied to the following path: *esquire-mvoers/movers-3-month-segment-partitioned/*
   3. The new file is deleted from the following path: *esquire-mvoers/AVRICK-combined-newmovers-weekly/* to ensure that AVRICK sees no files in that folder the next time the SFTP is used.
   4. Using metadata from the files in the *movers-3-month-segment-partitioned/* folder, determine which of the 13 files is the oldest. 
@@ -81,7 +81,7 @@ slug: /esquire/avrick_movers/lambda
 **Layers** - NA
 
 **Function** - 
-  1. A event is reveived by the function that a new file has dropped into the *movers-3-month-segment-combined/* folder. 
+  1. An event is received by the function that a new file has dropped into the *movers-3-month-segment-combined/* folder. 
   2. Using metadata from the files, determine which of the two files is the oldest. 
   3. The oldest file is copied to the following path: *esquire-movers/archived-data/archive movers-3-month-segment-combined//* 
   4. The oldest file is deleted from the following path: *esquire-movers/movers-3-month-segment-combined/*
