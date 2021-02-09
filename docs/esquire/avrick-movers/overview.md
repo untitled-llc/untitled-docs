@@ -24,7 +24,7 @@ The Pre Movers, Escrow movers and New Movers all contain the following attribute
     - [**delete_escrow**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/delete_escrow?tab=configuration)
     - [**delete_movers**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/delete_movers?tab=configuration) & [**delete_combined_movers**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/delete_combined_movers?tab=configuration)
 3. The **delete_movers** lambda function triggers a Glue job, [**esquire-movers**](https://us-east-2.console.aws.amazon.com/glue/home?region=us-east-2#editJob:isNewlyCreated=false;jobName=esquire-movers) that imports the data to the [**esquire-myraid-prod-cluster**](https://us-east-2.console.aws.amazon.com/redshiftv2/home?region=us-east-2#cluster-details?cluster=esquire-myriad-prod-cluster)
-4. The [**myriad-movers-delete-and-unload**](https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#rules:name=myriad-movers-delete-and-unload) event based Cloudwatch Rule is triggered on the succession of the **esquire-movers** Glue job. 
+4. The [**myriad-movers-delete-and-unload**](https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#rules:name=myriad-movers-delete-and-unload) event based Cloudwatch Rule is triggered on the success of the **esquire-movers** Glue job. 
 5. The **myriad-movers-delete-and-unload** triggers the [**delete_esquire_myriad_prod_movers**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions?f0=true&n0=false&op=and&v0=delete) lambda function
 
   
