@@ -43,7 +43,7 @@ Since this function is used for other parts in the ads metric automation, the be
   6. Esquire named their Facebook integration with '\_fbaccount', so if 'fbaccount' is in *newest_file_name* the file is copied to the **esquire-datalake-combined** bucket under the path: **facebook**/*folder*/(*top_level_fld*)_(*file_name*)
   7. Otherwise all files are copied to the **esquire-datalake-combined** bucket under the path: (*integration_name*)/(*folder*)/(*top_level_fld*)_(*file_name*)
   
-  ### [**dedupe_esquire_myriad_prod_cluster**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/dedupe_esquire_myriad_prod_cluster?tab=configuration)
+### [**dedupe_esquire_myriad_prod_cluster**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/dedupe_esquire_myriad_prod_cluster?tab=configuration)
 
 Since this function is used for other parts in the ads metric automation, the below only explains the parts that pertain to the Facebook Ads metrics automation. 
 
