@@ -48,11 +48,12 @@ Since this function is used for other parts in the ads metric automation, the be
 This documentation is for a clearer description of what files/information can be found within the **esquire-datalake** bucket for files related to *Xandr* data.
   
   1. [*esquire-datalake/*](https://s3.console.aws.amazon.com/s3/buckets/esquire-datalake?region=us-east-2&tab=objects) <br />
-  This bucket serves as a dumping ground for all files relating to Xandr along with other miscellaneous files that don't necessarily pertain to Esquire's clients ads, like Google Ads, Google Sheets and Salesforce. For all of the Xandr connections, the data will fall under the [*esquire-xandr/*](https://s3.console.aws.amazon.com/s3/buckets/esquire-datalake?region=us-east-2&prefix=esquire-xandr/&showversions=false) folder in **esquire-datalake**. You will also see the additional folder and files: *Date, Data Source type, Data Source id, Currency, Advertiser ID, Advertiser name, Campaign ID, Campaign name, Creative ID, Creative name, Insertion order ID, Insertion order name, Clicks, Impressions, Media cost, Spend, Line item ID* and *Lime item name*. 
-  2. *schema.funnel_data_{startYYYY}_{startMM}.sql* - Contains SQL code to create a table with the columns exported from Funnel.io (This is not used)
-  3. *summary.funnel_data_{startYYYY}_{startMM}.json* - Contains metadata about the CSV file dropped from Funnel.io (This is not used)
-  4. *test.funnel_data_{startYYYY}_{startMM}.txt* - A test file from Funnel.io (This is not used)
-  5. *verificationToken.txt* - The token Funnel.io uses for bucket verification - DO NOT DELETE
-  
+  This bucket serves as a dumping ground for all files relating to Xandr along with other miscellaneous files that don't necessarily pertain to Esquire's clients ads, like Google Ads, Google Sheets and Salesforce. For all of the Xandr connections, the data will fall under the [*esquire-xandr/*](https://s3.console.aws.amazon.com/s3/buckets/esquire-datalake?region=us-east-2&prefix=esquire-xandr/&showversions=false) folder in **esquire-datalake**. You will also see the additional folder and files: 
+     1. [*data/*](https://s3.console.aws.amazon.com/s3/buckets/esquire-datalake?region=us-east-2&prefix=esquire-xandr/data/&showversions=false). These files contain information for all connections seen in Funnel.io and include the columns : *Date, Data Source type, Data Source id, Currency, Advertiser ID, Advertiser name, Campaign ID, Campaign name, Creative ID, Creative name, Insertion order ID, Insertion order name, Clicks, Impressions, Media cost, Spend, Line item ID* and *Lime item name*. 
+     2. *schema.funnel_data_{startYYYY}_{startMM}.sql* - Contains SQL code to create a table with the columns exported from Funnel.io (This is not used)
+     3. *summary.funnel_data_{startYYYY}_{startMM}.json* - Contains metadata about the CSV file dropped from Funnel.io (This is not used)
+     4. *test.funnel_data_{startYYYY}_{startMM}.txt* - A test file from Funnel.io (This is not used)
+     5. *verificationToken.txt* - The token Funnel.io uses for bucket verification - DO NOT DELETE
+
 ## Supplemental Information
 Xandr data does not need to be copied to the **esquire-datalake-combined** bucket becuase all AppNexus connections in Funnel.io fall under ONE export, unlike Stich where each Facebook integration exports to a different folder. Because the data coming from Funnel.io works this way, there is no issue when creating Glue crawlers like there is for Stitch. If you're reading about Xandr data before Facebook, reference part 2 [here](https://happy-rosalind-dc4d93.netlify.app/docs/esquire/ads_metrics/facebook#s3-buckets) for more information. 
