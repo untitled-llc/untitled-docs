@@ -28,7 +28,7 @@ Examples: <br />
 
 ### [**combine_esquire_datalake_folders**](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions/combine_esquire_datalake_folders?tab=configuration)
 
-Since this function is used for other parts in the ads metric automation, the below only explains the parts that pertain to the Facebook Ads metrics automation. 
+Since this function is used for other parts in the ads metric automation, the descriptions below only explains the parts that pertain to the Facebook Ads metrics automation. 
 
 **Trigger** - S3 ObjectCreatedByPut & S3 ObjectCreatedByCompleteMultipartUpload in the path: *esquire-datalake/*
 
