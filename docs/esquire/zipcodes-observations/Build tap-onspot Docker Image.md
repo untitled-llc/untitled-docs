@@ -26,7 +26,7 @@ This file only includes ``` FROM python:3 ```. This sets the base image and allo
 ## Dockerfile.build
 This file holds the majority of the information required to build the Docker image. This documentation will walk through each line of this file for clarity. 
 
-```javascript=
+```{r, attr.source='.numberLines'}
 FROM alpine:latest as stage1
 RUN mkdir -p /root/.ssh
 ARG PRIVATE_RSA_KEY=""
