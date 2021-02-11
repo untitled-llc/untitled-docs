@@ -50,42 +50,42 @@ This file holds the majority of the information required to build the Docker ima
 
 **Line 21** ```RUN ssh-keyscan -H github.com >> /root/.ssh/known_hosts``` This adds the github ssh fingerprint to the local machine the image is being built upon. 
 
-**Line 22-23** ```COPY requirements.txt .
+**Line 23-24** ```COPY requirements.txt .
 RUN pip install --upgrade pip --no-cache-dir -q -r requirements.txt``` This copies the *requirements.txt* from the root folder this Docker image is being built upon. It then upgrades pip, disables the cache to allow for a smaller image, and installs all of the libraries inside the *requirements.txt* file. 
 
 * the following lines 25 - 46 are all run in succussion with the success of the previous line being required for the next line to run. (This is determined by the **&&** between each line)
 
-**Line 25 - 34** This set of code installs a bunch of libraries to a virtual "world". This allows the installation of all of these packages to be reverted easily by deleting the virtual "world". The main purpose in doing this is to keep your image as lean and light as possible because you can easily get rid of all of the packages once they are used.  
+**Line 26 - 35** This set of code installs a bunch of libraries to a virtual "world". This allows the installation of all of these packages to be reverted easily by deleting the virtual "world". The main purpose in doing this is to keep your image as lean and light as possible because you can easily get rid of all of the packages once they are used.  
 
-**Line 35 - 36** ```&& mkdir /usr/local/onspot \    && cd /usr/local/onspot \``` Makes the directory /usr/local/onspot and goes into this new directory. (cd = "change directory") 
+**Line 36 - 37** ```&& mkdir /usr/local/onspot \    && cd /usr/local/onspot \``` Makes the directory /usr/local/onspot and goes into this new directory. (cd = "change directory") 
 
-**Line 37*** ```&& python3 -m venv /usr/local/onspot/venvs/tap-onspot \``` This line creates a virtual environment in the directory /usr/local/onspot/venvs/tap-onspot. A virtual environment is used to for dependency management and project isolation. It allows python packages to be installed locally for tht virtual environment isolated directory and not globally. The tap and target are seperated into different virtual environments to avoid any overlap or interaction between the two. 
+**Line 38*** ```&& python3 -m venv /usr/local/onspot/venvs/tap-onspot \``` This line creates a virtual environment in the directory /usr/local/onspot/venvs/tap-onspot. A virtual environment is used to for dependency management and project isolation. It allows python packages to be installed locally for tht virtual environment isolated directory and not globally. The tap and target are seperated into different virtual environments to avoid any overlap or interaction between the two. 
 
-**Line 38** ```&& source /usr/local/onspot/venvs/tap-onspot/bin/activate \``` This line activates the previously created virtual environment. 
+**Line 39** ```&& source /usr/local/onspot/venvs/tap-onspot/bin/activate \``` This line activates the previously created virtual environment. 
 
-**Line 39** ```&& pip install python-dateutil==2.8.0 \``` installs the python-dateutil package with the 2.8.0 version on the virtual environment only. 
+**Line 40** ```&& pip install python-dateutil==2.8.0 \``` installs the python-dateutil package with the 2.8.0 version on the virtual environment only. 
 
-**Line 40** ```&& git clone git@github.com:Esquire-Media/tap-onspot.git \``` clones the GitHub repo containing all of the previously described files used to tap OnSpot API into the virtual environment just created. 
+**Line 41** ```&& git clone git@github.com:Esquire-Media/tap-onspot.git \``` clones the GitHub repo containing all of the previously described files used to tap OnSpot API into the virtual environment just created. 
 
-**Line 41 -42** ```&& cd tap-onspot \ && pip install . \``` This will go into the GitHub repo directory and execute the *setup.py* file, which installs specific packages for the tap. 
+**Line 42 -43** ```&& cd tap-onspot \ && pip install . \``` This will go into the GitHub repo directory and execute the *setup.py* file, which installs specific packages for the tap. 
 
-**Line 43** ```&& cd /usr/local/onspot \``` Goes back to the base directory, as in outside of the tap virtual environment. 
+**Line 44** ```&& cd /usr/local/onspot \``` Goes back to the base directory, as in outside of the tap virtual environment. 
 
-**Line 44*** ```&& python3 -m venv /usr/local/onspot/venvs/target-json \``` creates a virtual environment directory for the target. 
+**Line 45*** ```&& python3 -m venv /usr/local/onspot/venvs/target-json \``` creates a virtual environment directory for the target. 
 
-**Line 45** ``` && source /usr/local/onspot/venvs/target-json/bin/activate \``` activates the target virtual environment.
+**Line 46** ``` && source /usr/local/onspot/venvs/target-json/bin/activate \``` activates the target virtual environment.
 
-**Line 46** ```&& pip3 install --no-cache-dir target-json``` installs the python package target-json that allows the target to save as a json file. 
+**Line 47** ```&& pip3 install --no-cache-dir target-json``` installs the python package target-json that allows the target to save as a json file. 
 
-**Line 46** ```ADD run_tap_scripts/onspot-s3-daily-homs.py /usr/local/onspot/venvs/onspot-s3-daily-homs.py``` This adds the file *onspot-s3-daily-homs.py* that is located in the directory we are building the image from to the directory /usr/local/onspot/venvs/onspot-s3-daily-homs.py. This is NOT inside either of the virtual environments but is one layer above both of them. 
+**Line 48** ```ADD run_tap_scripts/onspot-s3-daily-homs.py /usr/local/onspot/venvs/onspot-s3-daily-homs.py``` This adds the file *onspot-s3-daily-homs.py* that is located in the directory we are building the image from to the directory /usr/local/onspot/venvs/onspot-s3-daily-homs.py. This is NOT inside either of the virtual environments but is one layer above both of them. 
 
-**Line 47*** ```RUN mkdir /usr/local/onspot/venvs/script``` makes the directory ../script inside the same directory as the *onspot-s3-daily-homs.py*. The Dockerfile.build is trying to build a folder structure that replicates the Github repository it is located in. 
+**Line 49*** ```RUN mkdir /usr/local/onspot/venvs/script``` makes the directory ../script inside the same directory as the *onspot-s3-daily-homs.py*. The Dockerfile.build is trying to build a folder structure that replicates the Github repository it is located in. 
 
-**Line 48** ```ADD run_tap_scripts/script/local_module.py /usr/local/onspot/venvs/script/local_module.py``` This then adds the *local_module.py* to the ../script folder. 
+**Line 50** ```ADD run_tap_scripts/script/local_module.py /usr/local/onspot/venvs/script/local_module.py``` This then adds the *local_module.py* to the ../script folder. 
 
-**Line 49** ```ADD run_tap_scripts/script/__init__.py /usr/local/onspot/venvs/script/__init__.py``` Adds the __init__.py file to the /script folder also. This file allows python to treat the ../script directory as a package or module. It allows for easier use of the functions defined in *local_module.py*. (Refer to this [link](https://stackoverflow.com/questions/448271/what-is-init-py-for) for more information regarding why the \__init\__.py is used. )
+**Line 51** ```ADD run_tap_scripts/script/__init__.py /usr/local/onspot/venvs/script/__init__.py``` Adds the __init__.py file to the /script folder also. This file allows python to treat the ../script directory as a package or module. It allows for easier use of the functions defined in *local_module.py*. (Refer to this [link](https://stackoverflow.com/questions/448271/what-is-init-py-for) for more information regarding why the \__init\__.py is used. )
 
-**Line 50** ```ENTRYPOINT ["python3","/usr/local/onspot/venvs/onspot-s3-daily-homs.py"]``` This uses the base image python3 created in the Dockerfile to execute the file *onspot-s3-daily-homs.py*. 
+**Line 53** ```ENTRYPOINT ["python3","/usr/local/onspot/venvs/onspot-s3-daily-homs.py"]``` This uses the base image python3 created in the Dockerfile to execute the file *onspot-s3-daily-homs.py*. 
 
 
 ## local_module.py 
