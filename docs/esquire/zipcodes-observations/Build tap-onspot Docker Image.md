@@ -1,5 +1,5 @@
 ---
-id: Build tap-onspot Docker Image
+id: docker-image
 title: Build tap-onspot Docker Image
 sidebar_label: Build tap-onspot Docker Image
 slug: /esquire/zips_observations/docker-image
