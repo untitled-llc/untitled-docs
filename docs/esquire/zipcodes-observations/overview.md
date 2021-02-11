@@ -13,14 +13,16 @@ slug: /esquire/zips_observations/overview
 
 ## Brief Explanation
 
-This process is used to collect the foot traffic data that is presented on the front end dashboard to Esquire's clientele. For example, one of Esquire's clientele's is HOM Furniture. This is a furniture company that has around 20 different stores in the Minnesota Wisconsin area. The Esquire dashboard allows someone from HOM to look into each unique store they own and see how many people visited that particular store, how many people visited their competitor stores in the area, and how many people visited both their store and competitor Bob's Furniture Store (for example). This data allows furniture companies to make better informed marketing and sales decisions and better understand who their strongest competitors are. 
+This process is used to collect the foot traffic data that is presented on the front end Esquire dashboard to Esquire's clientele. For example, one of Esquire's clientele's is HOM Furniture. This is a furniture company that has around 20 different stores in the Minnesota Wisconsin area. The Esquire dashboard allows someone from HOM to look into each unique store they own and see how many people visited that particular store, how many people visited their competitor stores in the area, and how many people visited both their store and a competitor's store. The data on the dashboard allows furniture companies to make better informed marketing and sales decisions and better understand who their strongest competitors are. 
 
-The architecture for this process is complicated, but can broken down into two main parts: (1) A Singer IO API tap to OnSpot  (2) AWS architecture that "hosts" this process on their cloud infrustructure. This page is an overview of both of these processes and all further detail can be found on the following pages LINK OTHER PAGES HERE. 
+The foot traffic data comes down to two main components, zipcodes and observations. Zipcodes are used to indicate what location the buyers live in. Observations are used to determine how many devices are at a certain lcocation at a certain time. This data is collected from a company called OnSpot. OnSpot is a Denver, CO based company that specializes in geospatial data. Esquire uses their OnSpot API to collect the information, save it on AWS and then use it inside Sisense to present the data on the dashboard. 
+
+The architecture for this process is complicated, but can broken down into two main parts: (1) A Singer IO API tap to OnSpot  (2) AWS architecture that "hosts" this process on their cloud infrustructure. This page is an overview of both of these processes and all further detail can be found on the following pages: [tap-onspot](tap-onspot.md) (information regarding how the API call is made and saved locally), [Build tap-onspot Docker Image](Build tap-onspot Docker Image.md) (describes how the tap-onspot code is built into a Docker image for Esquire to use on AWS in an automated fashion), [Lambda Functions](lambda.md) (used to explain all Lambda functions involved), [S3](s3.md)(used to explain all S3 buckets involved), and [RedShift & Glue](redshift-glue.md) (used to explain all Redshift and Glue parts involved). 
 
 
 ## Singer IO - Tap OnSpot 
 
-Singer.io is an open-source, JSON-based data shifting, ETL framework. It is used to move data between an API source and a chosen destination. In reference to this Esquire project, the OnSpot Hyper Targeted Marketing API is the source and the destination is an AWS S3 bucket. It was created to gather information from 3 different OnSpot API endpoints: devices, zipcodes, and observations. Currently, Esquire uses the tap-onspot only for the zipcode and observation endpoint. The zipcode endpoint (POST */geoframe/demographics/aggregate/zipcodes*) is used to send location information and a date range, and returns the household zipcode for the devices found at the given location. It will return a json response like what is shown below, where the response is for one location and given date range, and the count of each zipcode is associated with a device tracked at that lcoation on the entered date:
+Singer.io is an open-source, JSON-based data shifting, ETL framework. It is used to move data between an API source and a chosen destination. In reference to this Esquire project, the OnSpot Hyper Targeted Marketing API is the source and the destination is an AWS S3 bucket. It was created to gather information from 3 different OnSpot API endpoints: devices, zipcodes, and observations. Currently, Esquire uses the tap-onspot only for the zipcode and observation endpoint. The zipcode endpoint (POST */geoframe/demographics/aggregate/zipcodes*) is used to send location information and a date range, and returns the household zipcode for the devices found at the given location. It will return a json response like what is shown below. The response is for one location and given date range, and the count of each zipcode is associated with a device tracked at that lcoation on the entered date:
 
 ```
 {
@@ -57,7 +59,7 @@ The observations endpoint (POST */geoframe/all/observations*) is used to send lo
 }
 ```
 
-The input for both of these OnSpot API endpoints is the same, including the lattitude and longitude corrdinates of a polygon location and a start and end date range. The input body looks like the example below: 
+The input body for both of these OnSpot API endpoint calls is the same. It includes the lattitude and longitude coordinates of a polygon location and a start and end date. The input body looks like the example below: 
 
 ```
 {
@@ -105,11 +107,12 @@ The input for both of these OnSpot API endpoints is the same, including the latt
 }
 ```
 
-A further explanation of exactly how the singer.io tap-onspot works is described HERE, but for the sake of this brief overview, the input and output of the API will suffice.
+A further explanation of exactly how the singer.io tap-onspot works is described [HERE](tap-onspot.md), but for the sake of this "brief" overview, the input and output of the API will suffice.
+
 
 ## AWS Architecture
 
-The AWS cloud infrastructure is used to deploy and orchestrate the tap-onspot. The base of this architecture is a simple file of python code used to implement the singer.io tap-onspot and send all responses to an S3 folder. This code is wrapped into a Docker image that is saved on the [AWS ECR (Elastic Container Registry)](https://us-east-2.console.aws.amazon.com/ecr/repositories/private/646976236542/esquire/onspot?region=us-east-2). 
+The AWS cloud infrastructure is used to deploy and orchestrate the tap-onspot. The base of this architecture is a simple file of python code used to implement the singer.io tap-onspot. This code is wrapped into a Docker image that is saved on the [AWS ECR (Elastic Container Registry)](https://us-east-2.console.aws.amazon.com/ecr/repositories/private/646976236542/esquire/onspot?region=us-east-2). 
 
 The AWS Batch then uses the image saved in ECR and a compute environment from [AWS EC2 (Elastic Compute Cloud)](https://us-east-2.console.aws.amazon.com/batch/v2/home?region=us-east-2#compute-environments/detail/arn:aws:batch:us-east-2:646976236542:compute-environment/onspot-tap-2) to run the code locally inside the EC2 cloud environment. An [AWS Batch "Job Definition"](https://us-east-2.console.aws.amazon.com/batch/v2/home?region=us-east-2#job-definition) is created to connect AWS Batch to the desired Docker image. There is a separate job definition for both endpoints. An [AWS Batch "Job Queue"](https://us-east-2.console.aws.amazon.com/batch/v2/home?region=us-east-2#queues) is created to define the priority of this job in comparision to other jobs scheduled on the same EC2 compute environment.
 
