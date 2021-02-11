@@ -1,4 +1,3 @@
-
 ---
 id: build-tap-onspot-docker-image
 title: Build tap-onspot Docker Image
@@ -10,9 +9,9 @@ slug: /esquire/zips_observations/docker-image
 ## Table of Contents 
 * [Brief Introduction](#brief-introduction)
 * [Dockerfile](#dockerfile)
-* [Dockerfile.build](#dockerfile.build)
-* [local_module.py](#local_module.py)
-* [onspot-s3-daily-homs.py](#onspot-s3-daily-homs.py)
+* [Dockerfile.build](#dockerfilebuild)
+* [local_module.py](#local_modulepy)
+* [onspot-s3-daily-homs.py](#onspot-s3-daily-homspy)
 
 
 
@@ -27,7 +26,7 @@ This file only includes ``` FROM python:3 ```. This sets the base image and allo
 ## Dockerfile.build
 This file holds the majority of the information required to build the Docker image. This documentation will walk through each line of this file for clarity. 
 
-```scala
+```javascript=
 FROM alpine:latest as stage1
 RUN mkdir -p /root/.ssh
 ARG PRIVATE_RSA_KEY=""
