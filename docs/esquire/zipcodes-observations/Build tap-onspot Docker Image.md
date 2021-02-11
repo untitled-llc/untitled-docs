@@ -25,62 +25,8 @@ This file only includes ``` FROM python:3 ```. This sets the base image and allo
 
 ## Dockerfile.build
 This file holds the majority of the information required to build the Docker image. This documentation will walk through each line of this file for clarity. 
+![carbon](https://user-images.githubusercontent.com/71343561/107680241-97434200-6c6b-11eb-9665-7e676f059263.png)
 
-```{r, attr.source='.numberLines'}
-FROM alpine:latest as stage1
-RUN mkdir -p /root/.ssh
-ARG PRIVATE_RSA_KEY=""
-ENV PRIVATE_RSA_KEY=${PRIVATE_RSA_KEY}
-RUN echo "${PRIVATE_RSA_KEY}" >> /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
-
-RUN mkdir -p /root/.aws
-ARG AWS_IAM_KEY=""
-ARG AWS_IAM_SECRET=""
-ENV AWS_IAM_KEY=${AWS_IAM_KEY}
-ENV AWS_IAM_SECRET=${AWS_IAM_SECRET}
-RUN echo "[default]" >> /root/.aws/credentials
-RUN echo "region=us-east-2" >> /root/.aws/credentials
-RUN echo "aws_access_key_id = ${AWS_IAM_KEY}" >> /root/.aws/credentials
-RUN echo "aws_secret_access_key = ${AWS_IAM_SECRET}" >> /root/.aws/credentials
-RUN chmod 600 /root/.aws/credentials
-
-RUN apk update && apk add openssh-client && apk add --update build-base py-pip && \
-    rm -rf /var/cache/apk/*
-RUN ssh-keyscan -H github.com >> /root/.ssh/known_hosts
-# Install Python Packages
-COPY requirements.txt .
-RUN pip install --upgrade pip --no-cache-dir -q -r requirements.txt
-
-RUN apk add --no-cache --virtual .build-deps \
-                build-base \
-                libffi-dev \
-                libxml2-dev \
-                libxslt-dev \
-                linux-headers \
-                python3-dev \
-                python3 \
-                git \
-        && pip3 install --upgrade setuptools boto3 \
-        && mkdir /usr/local/onspot \
-        && cd /usr/local/onspot \
-    && python3 -m venv /usr/local/onspot/venvs/tap-onspot \
-    && source /usr/local/onspot/venvs/tap-onspot/bin/activate \
-    && pip install python-dateutil==2.8.0 \
-    && git clone git@github.com:Esquire-Media/tap-onspot.git \
-        && cd tap-onspot \
-        && pip install . \
-        && cd /usr/local/onspot \
-    && python3 -m venv /usr/local/onspot/venvs/target-json \
-    && source /usr/local/onspot/venvs/target-json/bin/activate \
-    && pip3 install --no-cache-dir target-json 
-ADD run_tap_scripts/onspot-s3-daily-homs.py /usr/local/onspot/venvs/onspot-s3-daily-homs.py
-RUN mkdir /usr/local/onspot/venvs/script
-ADD run_tap_scripts/script/local_module.py /usr/local/onspot/venvs/script/local_module.py
-ADD run_tap_scripts/script/__init__.py /usr/local/onspot/venvs/script/__init__.py
-
-ENTRYPOINT ["python3","/usr/local/onspot/venvs/onspot-s3-daily-homs.py"]
-```
 
 **Line 1** ``` FROM alpine_latest as stage1``` sets the base image as Alpine Linux. This is a very commonly used image base due to its small size, speed and security. 
 
