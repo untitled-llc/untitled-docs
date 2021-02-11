@@ -16,13 +16,15 @@ slug: /esquire/zips_observations/tap-onspot
 
 Singer.io is a Stitch tool that describes how data extraction scripts called "taps" and data loading scripts called "targets" communicate, allowing for them to be used in any combination to get data from any source to any destination. It is an open-source tool that can "tap" such sources as Ebay, Facebook Ads, Google Ads, and MySQL and has such "targets" as csv, Stitch, or Google Sheets. The way this process is implemented is by creating a GitHub repository for each unique tap and target. The user will clone the git repo, and enter the given repo on their local machine. From here it is suggested to create a virtual environment for the "tap" code (or git repo) and a seperate virtual environment for the target code (or git repo) and run one line of code in the Command Line Interface (CLI). There are two main modes you can run the tap in, Discovery or Sync Mode. The Discovery mode is used to create the catalog.json file but once it is created will not be necessary. (In the case of OnSpot, this is already created and saved to S3 so will not ever be necessary). The Sync mode is used when you are trying to make the API call to retrieve data. 
 
-The extended explanation of Singer.io can become long and complicated and is very dependent on which source and destination the user would like to use.  This is because it is an open-source tool so much of the code is written by many different authors. From here on out we will be speaking of singer.io taps in reference to OnSpot specifically, however much of this information can be related back to use with other taps and targets. The tap-onspot code is written by the company Bytecode. It establishes a base tap code so that a user can clone the Bytecode tap-onspot repository, create the 4 foundational files for taps (tap_config.json, catalog.json, state.json, and target_config.json), and run one line in their command line to make calls to the OnSpot API and recieve responses on S3 AWS. This tap-onspot code can be used by any company with access to OnSpot API. The following documentation will walk through the outline of each file in this repository to help bring more clarity to what the initial command line is doing and how the foundational files are used. It will describe the base tap files and the following other documentation page *Build tap-onspot Docker Image* will describe how Esquire uses the tap-onspot code in their zipcodes and observations process. 
+The extended explanation of Singer.io can become long and complicated and is very dependent on which source and destination the user would like to use.  This is because it is an open-source tool so much of the code is written by many different authors. From here on out we will be speaking of singer.io taps in reference to OnSpot API specifically, however much of this information can be related back to use with other taps and targets. The tap-onspot code is written by the company Bytecode. It establishes a base tap code so that a user can clone the Bytecode tap-onspot repository, create the 4 foundational files for taps (*tap_config.json, catalog.json, state.json,* and *target_config.json*), and run one line in their command line to make calls to the OnSpot API and recieve responses on S3 AWS. This tap-onspot code can be used by any company with access to OnSpot API. The following documentation will walk through the outline of each file in this repository to help bring more clarity to what the initial command line is doing and how the foundational files are used. It will describe the base tap files while the following documentation page, *Build tap-onspot Docker Image*, will describe how Esquire uses the tap-onspot code in their zipcodes and observations process. 
 
 
 ## Command Line
 
 The one line that is used inside the code that hosts tap-onspot for Esquire on their AWS Architecture is:
+
  ```tap-onspot --config tap_config.json --catalog catalog.json --state state_previous.json | target --config target_config.json > state.json``` 
+
  Let us walk through what each part of this command does. It begins with ```tap-<type of tap>``` , where the "type of tap" could be "facebook" or "google", or for this case, the command begins with ```tap-onspot```. This CLI line is defined in the git repo file *setup.py*. Here the entrypoint is defined as a "console_scripts" that when the string "tap-onspot" is written in the command line it will direct the user to the tap_onspot:main function and initiate the entire repo depending upon which commands follow "tap-onspot". 
 
  The next part is ```--config```. This command is used to define the tap configuration file, which holds all of the parameters that are necessary to run this tap. 
@@ -39,7 +41,7 @@ The one line that is used inside the code that hosts tap-onspot for Esquire on t
 
 
 ## 4 Foundational Files
-Following off of how each file is used in the command line, below is a better undertanding of the values present in each file. 
+Following off of how each file is used in the command line, below is a better understanding of the values present in each of the four foundational files. 
 
 ### tap_config.json
 The file containing all parameter arguements. 
@@ -157,7 +159,7 @@ This file is used for parameter arguements to pass to the target output file. Th
 
 ## tap-onspot Files:
 
-The following files are what make the one command line useable. A user simply has to be in a directory with the following files, and the above foundational files, with the correct python packages to run the command described above to "tap" the OnSpot API. 
+The following files are what make the one command line useable. A user simply has to be in a directory with the following files, and the above foundational files, with the correct python packages, to run the command described above to "tap" the OnSpot API. 
 
 ### __init__.py
 This file contains the main() function that will automatically be run when the entire git repo is run in the command line. The main function has 3 main tasks:

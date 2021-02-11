@@ -16,9 +16,9 @@ slug: /esquire/zips_observations/docker-image
 
 
 ## Brief Introduction
-All of the previously described files in the *tap-onspot* document are the foundational code for the tap-onspot. Those files describe how the OnSpot API calls are made, formatted and processed.  The following explanation will describe the files that actually implement this process for Esquire on their AWS. The AWS architecture itself is well described in the Overview* and in the *Lambda Functions* and *S3* files. The rest of this document will be used to describe the python code that is condensed down to a Docker image on AWS ECR. 
+All of the previously described files in the *tap-onspot* document are the foundational code for the tap-onspot. Those files describe how the OnSpot API calls are made, formatted and processed.  The following explanation will describe the files that actually implement this process for Esquire on their AWS. The AWS architecture itself is well described in the *Overview* and in the *Lambda Functions* and *S3* files. The rest of this document will be used to describe the python code that is condensed down to a Docker image on AWS ECR. 
 
-The Docker image is built using 4 important files, *Dockerfile, Dockerfile.build, onspot-s3-daily-homs.py and *local_module.py*. There are also 3 completely empty files that are required but hold no further information within them, *requirements.txt. /__init/__.py *and another *\__init\__.py (for *local_module.py*). The requirements file is there to place necessary import libraries. Currently it is not being used but could be in the future just by adding required libraries ot this file and rebuilding the Docker image. 
+The Docker image is built using 4 important files, *Dockerfile, Dockerfile.build, onspot-s3-daily-homs.py* and *local_module.py*. There are also 3 completely empty files that are required but hold no further information within them, *requirements.txt. /__init/__.py *and another *\__init\__.py (for *local_module.py*). The requirements file is there to place necessary import libraries. Currently it is not being used but could be in the future just by adding required libraries ot this file and rebuilding the Docker image. 
 
 ## Dockerfile
 This file only includes ``` FROM python:3 ```. This sets the base image and allows the docker Image to be built with two different bases. 
@@ -100,7 +100,7 @@ This file is used to define all necessary functions. Here are the functions defi
 
 
 ## onspot-s3-daily-homs.py
-This file is what the Docker Image executes when initiated. It uses the functions defined in *local_module.py* to run the tap-onspot. It takes the following steps:
+This file is what the Docker Image executes when initiated, the "entrypoint". It uses the functions defined in *local_module.py* to run the tap-onspot. It takes the following steps:
 1. Imports functions from local_module
 2. defines local variables. (The variable **pipeline** is defined as an environment variable on AWS Batch job definition.)
 3. creates the necessary local directories using **create_local_pipeline_dir(source, pipeline)**. 
