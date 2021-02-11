@@ -10,15 +10,13 @@ slug: /esquire/zips_observations/tap-onspot
 * [Brief Introduction](#brief-introduction)
 * [Command Line](#singer-io-tap-onspot)
 * [4 Foundational Files](#4-foundational-files)
-* [tap-onspot Files](#aws-architecture)
-* [Files used on AWS to Run the tap-onspot](#files-used-on-aws-to-run-the-tap-onspot)
-
+* [tap-onspot Files](#tap-onspot-files)
 
 ## Brief Introduction
 
 Singer.io is a Stitch tool that describes how data extraction scripts called "taps" and data loading scripts called "targets" communicate, allowing for them to be used in any combination to get data from any source to any destination. It is an open-source tool that can "tap" such sources as Ebay, Facebook Ads, Google Ads, and MySQL and has such "targets" as csv, Stitch, or Google Sheets. The way this process is implemented is by creating a GitHub repository for each unique tap and target. The user will clone the git repo, and enter the given repo on their local machine. From here it is suggested to create a virtual environment for the "tap" code (or git repo) and a seperate virtual environment for the target code (or git repo) and run one line of code in the Command Line Interface (CLI). There are two main modes you can run the tap in, Discovery or Sync Mode. The Discovery mode is used to create the catalog.json file but once it is created will not be necessary. (In the case of OnSpot, this is already created and saved to S3 so will not ever be necessary). The Sync mode is used when you are trying to make the API call to retrieve data. 
 
-The extended explanation of Singer.io can become long and complicated and is very dependent on which source and destination the user would like to use.  This is because it is an open-source tool so much of the code is written by many different authors. From here on out we will be speaking of singer.io taps in reference to OnSpot specifically, however much of this information can be related back to use with other taps and targets. The tap-onspot code is written by the company Bytecode. It establishes a base tap code so that a user can clone the Bytecode tap-onspot repository, create the 4 foundational files for taps (tap_config.json, catalog.josn, state.json, and target_config.json), and run one line in their command line to make calls to the OnSpot API and recieve responses on S3 AWS. The following documentation will walk through the outline of each file in this repository to help bring more clarity to what the initial command line is doing and how the foundational files are used. 
+The extended explanation of Singer.io can become long and complicated and is very dependent on which source and destination the user would like to use.  This is because it is an open-source tool so much of the code is written by many different authors. From here on out we will be speaking of singer.io taps in reference to OnSpot specifically, however much of this information can be related back to use with other taps and targets. The tap-onspot code is written by the company Bytecode. It establishes a base tap code so that a user can clone the Bytecode tap-onspot repository, create the 4 foundational files for taps (tap_config.json, catalog.json, state.json, and target_config.json), and run one line in their command line to make calls to the OnSpot API and recieve responses on S3 AWS. This tap-onspot code can be used by any company with access to OnSpot API. The following documentation will walk through the outline of each file in this repository to help bring more clarity to what the initial command line is doing and how the foundational files are used. It will describe the base tap files and the following other documentation page *Build tap-onspot Docker Image* will describe how Esquire uses the tap-onspot code in their zipcodes and observations process. 
 
 
 ## Command Line
@@ -159,12 +157,27 @@ This file is used for parameter arguements to pass to the target output file. Th
 
 ## tap-onspot Files:
 
+The following files are what make the one command line useable. A user simply has to be in a directory with the following files, and the above foundational files, with the correct python packages to run the command described above to "tap" the OnSpot API. 
+
 ### __init__.py
 This file contains the main() function that will automatically be run when the entire git repo is run in the command line. The main function has 3 main tasks:
 1. Parses/loads all variable arguements. (tap_config, catalog and state)
 * There are a few REQUIRED_CONFIG_KEYS that are all specified inside the *tap_config.json* file 
 2. Connects to S3 client and OnSpot Client using these arguements
 3. Triggers the sync() or do_discover() function based on which mode the user is using 
+
+### setup.py 
+This file is the first file that is used when you run the command line described above. It declares the following things:
+1. **name=** gives the name project and how it will be listed on PyPI
+2. **version=** gives the version of your project that is displayed to PyPI (if published).
+3. **description=** gives the short description that will also be on PyPI if publsihed. 
+4. **author=** gives details about the author.
+5.  **classifiers=[...]** gives additional metadata about the package. Specifies the package is only compatible with python3. However, this does NOT install python3 and still needs to be installed sepeperately from this statement.
+6. **py_modules=[...]** lists all modules used for **setuptools**. In the case of tap-onspot it lists the entire **tap_onspot/** directory
+7. **install_requires=[...]** when project is installed by **pip**, it will install these dependency packages. 
+8. **entry_points=** sets the entry_point of this project to the main() function defined in the *\__init\__.py file. This function brings together all of the other files to one function. 
+9. **packages=** sets packages, sub-packages etc. in the project using findpackages() function. 
+10. **package_data=** this maps the packages that are previously declared called **tap_onspot** to the * 'schemas/*.json'* files needed inside of this package. 
 
 ### client.py
 This file is used to connect to the S3 Client and OnSpot Client. For each Client it defines 3 main pieces:
@@ -220,3 +233,4 @@ This is the core of this git repository. It holds the sync() function that bring
 20. If there was an error it will upload the error to S3 and logs the error
 21. Updates the bookmark_date
 22. Logs that the sync is completed. In total OnSpot API will be called once for each input_location file for each date between 30 days ago and 2 days ago. Each input location file has 50 locations (except for the last file)
+

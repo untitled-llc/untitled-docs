@@ -6,7 +6,7 @@ module.exports = {
     Esquire: ['esquire/overview',
              { type: 'category', 
                label:'Zipcodes and Observations', 
-                     items: ['esquire/zipcodes-observations/overview','esquire/zipcodes-observations/tap-onspot','esquire/zipcodes-observations/lambda', 'esquire/zipcodes-observations/s3','esquire/zipcodes-observations/redshift-glue']}, 
+                     items: ['esquire/zipcodes-observations/overview','esquire/zipcodes-observations/tap-onspot','esquire/zipcodes-observations/lambda', 'esquire/zipcodes-observations/s3','esquire/zipcodes-observations/redshift-glue', '/esquire/zips_observations/docker-image']}, 
              { type: 'category', 
                label:'Ads Metrics', 
                      items: ['esquire/ads-metrics/overview', 'esquire/ads-metrics/facebook', 'esquire/ads-metrics/xandr', 'esquire/ads-metrics/eltoro']},
